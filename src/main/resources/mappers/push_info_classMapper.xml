@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kf.admin.mapper.push_info_classMapper">
+  <resultMap id="BaseResultMap" type="com.kf.admin.pojo.push_info_class">
+    <constructor>
+      <idArg column="pic_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="mc_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pic_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pic_id, mc_id, pic_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from push_info_class
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from push_info_class
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kf.admin.pojo.push_info_class">
+    insert into push_info_class (pic_id, mc_id, pic_name
+      )
+    values (#{picId,jdbcType=INTEGER}, #{mcId,jdbcType=INTEGER}, #{picName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kf.admin.pojo.push_info_class">
+    insert into push_info_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="picId != null">
+        pic_id,
+      </if>
+      <if test="mcId != null">
+        mc_id,
+      </if>
+      <if test="picName != null">
+        pic_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="picId != null">
+        #{picId,jdbcType=INTEGER},
+      </if>
+      <if test="mcId != null">
+        #{mcId,jdbcType=INTEGER},
+      </if>
+      <if test="picName != null">
+        #{picName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kf.admin.pojo.push_info_class">
+    update push_info_class
+    <set>
+      <if test="mcId != null">
+        mc_id = #{mcId,jdbcType=INTEGER},
+      </if>
+      <if test="picName != null">
+        pic_name = #{picName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kf.admin.pojo.push_info_class">
+    update push_info_class
+    set mc_id = #{mcId,jdbcType=INTEGER},
+      pic_name = #{picName,jdbcType=VARCHAR}
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </update>
+</mapper>

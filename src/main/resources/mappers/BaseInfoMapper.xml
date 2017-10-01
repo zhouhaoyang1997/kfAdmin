@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kf.admin.mapper.BaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.kf.admin.pojo.BaseInfo">
+    <constructor>
+      <idArg column="pi_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pi_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pi_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pi_mc" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pi_sc" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pi_user" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pi_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pi_img" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pi_scan" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pi_push_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pi_chujia" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="pi_zhiding" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="pi_contact_person" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pi_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pi_qq" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pi_district" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pi_id, pi_title, pi_content, pi_mc, pi_sc, pi_user, pi_address, pi_img, pi_scan, 
+    pi_push_date, pi_chujia, pi_zhiding, pi_contact_person, pi_phone, pi_qq, pi_district
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from push_info
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from push_info
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kf.admin.pojo.BaseInfo">
+    insert into push_info (pi_id, pi_title, pi_content, 
+      pi_mc, pi_sc, pi_user, 
+      pi_address, pi_img, pi_scan, 
+      pi_push_date, pi_chujia, pi_zhiding, 
+      pi_contact_person, pi_phone, pi_qq, 
+      pi_district)
+    values (#{piId,jdbcType=INTEGER}, #{piTitle,jdbcType=VARCHAR}, #{piContent,jdbcType=VARCHAR}, 
+      #{piMc,jdbcType=INTEGER}, #{piSc,jdbcType=INTEGER}, #{piUser,jdbcType=INTEGER}, 
+      #{piAddress,jdbcType=VARCHAR}, #{piImg,jdbcType=VARCHAR}, #{piScan,jdbcType=INTEGER}, 
+      #{piPushDate,jdbcType=TIMESTAMP}, #{piChujia,jdbcType=DOUBLE}, #{piZhiding,jdbcType=CHAR}, 
+      #{piContactPerson,jdbcType=VARCHAR}, #{piPhone,jdbcType=VARCHAR}, #{piQq,jdbcType=VARCHAR}, 
+      #{piDistrict,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kf.admin.pojo.BaseInfo">
+    insert into push_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="piId != null">
+        pi_id,
+      </if>
+      <if test="piTitle != null">
+        pi_title,
+      </if>
+      <if test="piContent != null">
+        pi_content,
+      </if>
+      <if test="piMc != null">
+        pi_mc,
+      </if>
+      <if test="piSc != null">
+        pi_sc,
+      </if>
+      <if test="piUser != null">
+        pi_user,
+      </if>
+      <if test="piAddress != null">
+        pi_address,
+      </if>
+      <if test="piImg != null">
+        pi_img,
+      </if>
+      <if test="piScan != null">
+        pi_scan,
+      </if>
+      <if test="piPushDate != null">
+        pi_push_date,
+      </if>
+      <if test="piChujia != null">
+        pi_chujia,
+      </if>
+      <if test="piZhiding != null">
+        pi_zhiding,
+      </if>
+      <if test="piContactPerson != null">
+        pi_contact_person,
+      </if>
+      <if test="piPhone != null">
+        pi_phone,
+      </if>
+      <if test="piQq != null">
+        pi_qq,
+      </if>
+      <if test="piDistrict != null">
+        pi_district,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="piId != null">
+        #{piId,jdbcType=INTEGER},
+      </if>
+      <if test="piTitle != null">
+        #{piTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="piContent != null">
+        #{piContent,jdbcType=VARCHAR},
+      </if>
+      <if test="piMc != null">
+        #{piMc,jdbcType=INTEGER},
+      </if>
+      <if test="piSc != null">
+        #{piSc,jdbcType=INTEGER},
+      </if>
+      <if test="piUser != null">
+        #{piUser,jdbcType=INTEGER},
+      </if>
+      <if test="piAddress != null">
+        #{piAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="piImg != null">
+        #{piImg,jdbcType=VARCHAR},
+      </if>
+      <if test="piScan != null">
+        #{piScan,jdbcType=INTEGER},
+      </if>
+      <if test="piPushDate != null">
+        #{piPushDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piChujia != null">
+        #{piChujia,jdbcType=DOUBLE},
+      </if>
+      <if test="piZhiding != null">
+        #{piZhiding,jdbcType=CHAR},
+      </if>
+      <if test="piContactPerson != null">
+        #{piContactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="piPhone != null">
+        #{piPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="piQq != null">
+        #{piQq,jdbcType=VARCHAR},
+      </if>
+      <if test="piDistrict != null">
+        #{piDistrict,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kf.admin.pojo.BaseInfo">
+    update push_info
+    <set>
+      <if test="piTitle != null">
+        pi_title = #{piTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="piContent != null">
+        pi_content = #{piContent,jdbcType=VARCHAR},
+      </if>
+      <if test="piMc != null">
+        pi_mc = #{piMc,jdbcType=INTEGER},
+      </if>
+      <if test="piSc != null">
+        pi_sc = #{piSc,jdbcType=INTEGER},
+      </if>
+      <if test="piUser != null">
+        pi_user = #{piUser,jdbcType=INTEGER},
+      </if>
+      <if test="piAddress != null">
+        pi_address = #{piAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="piImg != null">
+        pi_img = #{piImg,jdbcType=VARCHAR},
+      </if>
+      <if test="piScan != null">
+        pi_scan = #{piScan,jdbcType=INTEGER},
+      </if>
+      <if test="piPushDate != null">
+        pi_push_date = #{piPushDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piChujia != null">
+        pi_chujia = #{piChujia,jdbcType=DOUBLE},
+      </if>
+      <if test="piZhiding != null">
+        pi_zhiding = #{piZhiding,jdbcType=CHAR},
+      </if>
+      <if test="piContactPerson != null">
+        pi_contact_person = #{piContactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="piPhone != null">
+        pi_phone = #{piPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="piQq != null">
+        pi_qq = #{piQq,jdbcType=VARCHAR},
+      </if>
+      <if test="piDistrict != null">
+        pi_district = #{piDistrict,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kf.admin.pojo.BaseInfo">
+    update push_info
+    set pi_title = #{piTitle,jdbcType=VARCHAR},
+      pi_content = #{piContent,jdbcType=VARCHAR},
+      pi_mc = #{piMc,jdbcType=INTEGER},
+      pi_sc = #{piSc,jdbcType=INTEGER},
+      pi_user = #{piUser,jdbcType=INTEGER},
+      pi_address = #{piAddress,jdbcType=VARCHAR},
+      pi_img = #{piImg,jdbcType=VARCHAR},
+      pi_scan = #{piScan,jdbcType=INTEGER},
+      pi_push_date = #{piPushDate,jdbcType=TIMESTAMP},
+      pi_chujia = #{piChujia,jdbcType=DOUBLE},
+      pi_zhiding = #{piZhiding,jdbcType=CHAR},
+      pi_contact_person = #{piContactPerson,jdbcType=VARCHAR},
+      pi_phone = #{piPhone,jdbcType=VARCHAR},
+      pi_qq = #{piQq,jdbcType=VARCHAR},
+      pi_district = #{piDistrict,jdbcType=INTEGER}
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </update>
+</mapper>
