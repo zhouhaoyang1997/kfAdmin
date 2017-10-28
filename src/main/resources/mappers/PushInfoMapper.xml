@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kf.admin.mapper.BaseInfoMapper">
-  <resultMap id="BaseResultMap" type="com.kf.admin.pojo.BaseInfo">
+<mapper namespace="com.kf.admin.mapper.PushInfoMapper">
+  <resultMap id="BaseResultMap" type="com.kf.admin.pojo.PushInfo">
     <constructor>
       <idArg column="pi_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="pi_title" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -19,12 +19,86 @@
       <arg column="pi_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pi_qq" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pi_district" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     pi_id, pi_title, pi_content, pi_mc, pi_sc, pi_user, pi_address, pi_img, pi_scan, 
-    pi_push_date, pi_chujia, pi_zhiding, pi_contact_person, pi_phone, pi_qq, pi_district
+    pi_push_date, pi_chujia, pi_zhiding, pi_contact_person, pi_phone, pi_qq, pi_district, 
+    status
   </sql>
+  <select id="selectByExample" parameterType="com.kf.admin.pojo.PushInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from push_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -35,21 +109,27 @@
     delete from push_info
     where pi_id = #{piId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.kf.admin.pojo.BaseInfo">
+  <delete id="deleteByExample" parameterType="com.kf.admin.pojo.PushInfoExample">
+    delete from push_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kf.admin.pojo.PushInfo">
     insert into push_info (pi_id, pi_title, pi_content, 
       pi_mc, pi_sc, pi_user, 
       pi_address, pi_img, pi_scan, 
       pi_push_date, pi_chujia, pi_zhiding, 
       pi_contact_person, pi_phone, pi_qq, 
-      pi_district)
+      pi_district, status)
     values (#{piId,jdbcType=INTEGER}, #{piTitle,jdbcType=VARCHAR}, #{piContent,jdbcType=VARCHAR}, 
       #{piMc,jdbcType=INTEGER}, #{piSc,jdbcType=INTEGER}, #{piUser,jdbcType=INTEGER}, 
       #{piAddress,jdbcType=VARCHAR}, #{piImg,jdbcType=VARCHAR}, #{piScan,jdbcType=INTEGER}, 
       #{piPushDate,jdbcType=TIMESTAMP}, #{piChujia,jdbcType=DOUBLE}, #{piZhiding,jdbcType=CHAR}, 
       #{piContactPerson,jdbcType=VARCHAR}, #{piPhone,jdbcType=VARCHAR}, #{piQq,jdbcType=VARCHAR}, 
-      #{piDistrict,jdbcType=INTEGER})
+      #{piDistrict,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.kf.admin.pojo.BaseInfo">
+  <insert id="insertSelective" parameterType="com.kf.admin.pojo.PushInfo">
     insert into push_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="piId != null">
@@ -99,6 +179,9 @@
       </if>
       <if test="piDistrict != null">
         pi_district,
+      </if>
+      <if test="status != null">
+        status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -150,9 +233,100 @@
       <if test="piDistrict != null">
         #{piDistrict,jdbcType=INTEGER},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kf.admin.pojo.BaseInfo">
+  <select id="countByExample" parameterType="com.kf.admin.pojo.PushInfoExample" resultType="java.lang.Integer">
+    select count(*) from push_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update push_info
+    <set>
+      <if test="record.piId != null">
+        pi_id = #{record.piId,jdbcType=INTEGER},
+      </if>
+      <if test="record.piTitle != null">
+        pi_title = #{record.piTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piContent != null">
+        pi_content = #{record.piContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piMc != null">
+        pi_mc = #{record.piMc,jdbcType=INTEGER},
+      </if>
+      <if test="record.piSc != null">
+        pi_sc = #{record.piSc,jdbcType=INTEGER},
+      </if>
+      <if test="record.piUser != null">
+        pi_user = #{record.piUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.piAddress != null">
+        pi_address = #{record.piAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piImg != null">
+        pi_img = #{record.piImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piScan != null">
+        pi_scan = #{record.piScan,jdbcType=INTEGER},
+      </if>
+      <if test="record.piPushDate != null">
+        pi_push_date = #{record.piPushDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.piChujia != null">
+        pi_chujia = #{record.piChujia,jdbcType=DOUBLE},
+      </if>
+      <if test="record.piZhiding != null">
+        pi_zhiding = #{record.piZhiding,jdbcType=CHAR},
+      </if>
+      <if test="record.piContactPerson != null">
+        pi_contact_person = #{record.piContactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piPhone != null">
+        pi_phone = #{record.piPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piQq != null">
+        pi_qq = #{record.piQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piDistrict != null">
+        pi_district = #{record.piDistrict,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update push_info
+    set pi_id = #{record.piId,jdbcType=INTEGER},
+      pi_title = #{record.piTitle,jdbcType=VARCHAR},
+      pi_content = #{record.piContent,jdbcType=VARCHAR},
+      pi_mc = #{record.piMc,jdbcType=INTEGER},
+      pi_sc = #{record.piSc,jdbcType=INTEGER},
+      pi_user = #{record.piUser,jdbcType=INTEGER},
+      pi_address = #{record.piAddress,jdbcType=VARCHAR},
+      pi_img = #{record.piImg,jdbcType=VARCHAR},
+      pi_scan = #{record.piScan,jdbcType=INTEGER},
+      pi_push_date = #{record.piPushDate,jdbcType=TIMESTAMP},
+      pi_chujia = #{record.piChujia,jdbcType=DOUBLE},
+      pi_zhiding = #{record.piZhiding,jdbcType=CHAR},
+      pi_contact_person = #{record.piContactPerson,jdbcType=VARCHAR},
+      pi_phone = #{record.piPhone,jdbcType=VARCHAR},
+      pi_qq = #{record.piQq,jdbcType=VARCHAR},
+      pi_district = #{record.piDistrict,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kf.admin.pojo.PushInfo">
     update push_info
     <set>
       <if test="piTitle != null">
@@ -200,10 +374,13 @@
       <if test="piDistrict != null">
         pi_district = #{piDistrict,jdbcType=INTEGER},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
     </set>
     where pi_id = #{piId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kf.admin.pojo.BaseInfo">
+  <update id="updateByPrimaryKey" parameterType="com.kf.admin.pojo.PushInfo">
     update push_info
     set pi_title = #{piTitle,jdbcType=VARCHAR},
       pi_content = #{piContent,jdbcType=VARCHAR},
@@ -219,7 +396,8 @@
       pi_contact_person = #{piContactPerson,jdbcType=VARCHAR},
       pi_phone = #{piPhone,jdbcType=VARCHAR},
       pi_qq = #{piQq,jdbcType=VARCHAR},
-      pi_district = #{piDistrict,jdbcType=INTEGER}
+      pi_district = #{piDistrict,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
     where pi_id = #{piId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -3,7 +3,7 @@ package com.kf.admin.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class BaseInfo implements Serializable {
+public class PushInfo implements Serializable {
     private Integer piId;
 
     private String piTitle;
@@ -36,9 +36,11 @@ public class BaseInfo implements Serializable {
 
     private Integer piDistrict;
 
+    private Integer status;
+
     private static final long serialVersionUID = 1L;
 
-    public BaseInfo(Integer piId, String piTitle, String piContent, Integer piMc, Integer piSc, Integer piUser, String piAddress, String piImg, Integer piScan, Date piPushDate, Double piChujia, String piZhiding, String piContactPerson, String piPhone, String piQq, Integer piDistrict) {
+    public PushInfo(Integer piId, String piTitle, String piContent, Integer piMc, Integer piSc, Integer piUser, String piAddress, String piImg, Integer piScan, Date piPushDate, Double piChujia, String piZhiding, String piContactPerson, String piPhone, String piQq, Integer piDistrict, Integer status) {
         this.piId = piId;
         this.piTitle = piTitle;
         this.piContent = piContent;
@@ -55,9 +57,10 @@ public class BaseInfo implements Serializable {
         this.piPhone = piPhone;
         this.piQq = piQq;
         this.piDistrict = piDistrict;
+        this.status = status;
     }
 
-    public BaseInfo() {
+    public PushInfo() {
         super();
     }
 
@@ -189,6 +192,14 @@ public class BaseInfo implements Serializable {
         this.piDistrict = piDistrict;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -200,7 +211,7 @@ public class BaseInfo implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        BaseInfo other = (BaseInfo) that;
+        PushInfo other = (PushInfo) that;
         return (this.getPiId() == null ? other.getPiId() == null : this.getPiId().equals(other.getPiId()))
             && (this.getPiTitle() == null ? other.getPiTitle() == null : this.getPiTitle().equals(other.getPiTitle()))
             && (this.getPiContent() == null ? other.getPiContent() == null : this.getPiContent().equals(other.getPiContent()))
@@ -216,7 +227,8 @@ public class BaseInfo implements Serializable {
             && (this.getPiContactPerson() == null ? other.getPiContactPerson() == null : this.getPiContactPerson().equals(other.getPiContactPerson()))
             && (this.getPiPhone() == null ? other.getPiPhone() == null : this.getPiPhone().equals(other.getPiPhone()))
             && (this.getPiQq() == null ? other.getPiQq() == null : this.getPiQq().equals(other.getPiQq()))
-            && (this.getPiDistrict() == null ? other.getPiDistrict() == null : this.getPiDistrict().equals(other.getPiDistrict()));
+            && (this.getPiDistrict() == null ? other.getPiDistrict() == null : this.getPiDistrict().equals(other.getPiDistrict()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override
@@ -239,6 +251,7 @@ public class BaseInfo implements Serializable {
         result = prime * result + ((getPiPhone() == null) ? 0 : getPiPhone().hashCode());
         result = prime * result + ((getPiQq() == null) ? 0 : getPiQq().hashCode());
         result = prime * result + ((getPiDistrict() == null) ? 0 : getPiDistrict().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
 }

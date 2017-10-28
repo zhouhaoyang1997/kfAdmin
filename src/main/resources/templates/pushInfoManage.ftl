@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="panel-body" style="display: block;">
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="#" method="post">
             <div class="form-group">
                 <label for="inputClass" class="col-sm-1 control-label">按类别</label>
                 <div class="col-sm-10">
