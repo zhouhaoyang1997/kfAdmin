@@ -34,9 +34,9 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <!--<sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">-->
-            <!--<property name="enableSubPackages" value="true"/>-->
-        <!--</sqlMapGenerator>-->
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.kf.admin.mapper"
                              targetProject="src/main/java">
@@ -44,6 +44,6 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="push_info" domainObjectName="PushInfo"></table>
+        <table tableName="user" domainObjectName="User"></table>
     </context>
 </generatorConfiguration>

@@ -20,7 +20,7 @@ spring:
 
 mybatis:
   #实体类所做包
-  type-aliases-package: com.kf.pojo
+  type-aliases-package: com.kf.admin.pojo
   #mappers.xml所在位置
   mapper-locations: classpath:mappers/*.xml
   configLocation: classpath:/mybatis-config.xml
@@ -28,4 +28,4 @@ mybatis:
 # LOGGING
 logging:
     level:
-       com.ibatis:DEBUG
+       com.kf.admin.mapper: debug
