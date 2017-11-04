@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     UserMapper userMapper;
+
     public User getUserByName(String username) {
         return userMapper.getUserByName(username);
     }
+
 }
