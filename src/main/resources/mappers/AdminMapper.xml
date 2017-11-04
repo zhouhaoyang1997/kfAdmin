@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kf.admin.mapper.AdminMapper">
+    <insert id="insertAdmin" parameterType="com.kf.admin.pojo.Admin">
+        INSERT INTO admin (user_name,user_password,lasted_time,level) VALUES (#{userName},#{userPassword},#{lastedTime},#{level})
+    </insert>
+
+    <select id="getAdminByUserId" parameterType="java.lang.Integer" resultType="com.kf.admin.pojo.Admin">
+        SELECT * from admin WHERE user_id=#{userId}
+    </select>
+    <select id="judgeAdmin" parameterType="com.kf.admin.pojo.Admin" resultType="com.kf.admin.pojo.Admin">
+        SELECT * from admin WHERE user_name=#{userName} and user_password=#{userPassword}
+    </select>
+
+</mapper>

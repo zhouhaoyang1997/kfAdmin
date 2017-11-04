@@ -5,11 +5,11 @@
 </script>
 <div class="panel">
     <div class="panel-body" style="display: block;">
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="getUserByName" method="get">
             <div class="form-group">
                 <label for="inputUserName" class="col-sm-1 control-label">用户名</label>
                 <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputUserName" placeholder="请输入用户名">
+                    <input type="text" class="form-control" name="username" id="inputUserName" placeholder="请输入用户名">
                 </div>
                 <div class=" col-sm-2">
                     <button type="submit" class="C">查询</button>
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="firstname" class="col-sm-1 control-label">用户名</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="userName">
+                    <input type="text" class="form-control" id="userName" value="">
                 </div>
             </div>
             <div class="form-group">

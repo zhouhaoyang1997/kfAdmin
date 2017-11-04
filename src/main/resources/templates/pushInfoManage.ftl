@@ -68,9 +68,10 @@
         method: 'get',
         contentType: "application/x-www-form-urlencoded",//必须要有！！！！
         url:"pushInfoSearch",//要请求数据的文件路径
-       // height:tableHeight(),//高度调整
-       toolbar: '#toolbar',//指定工具栏
+        // height:tableHeight(),//高度调整
+        toolbar: '#toolbar',//指定工具栏
         sortable: false,                     //是否启用排序
+        cache: false,                       //是否使用缓存，默认为true
         striped: true, //是否显示行间隔色
         dataField: "list",//bootstrap table 可以前端分页也可以后端分页，这里
         //我们使用的是后端分页，后端分页时需返回含有total：总记录数,这个键值好像是固定的
@@ -82,7 +83,7 @@
         sidePagination:'server',//指定服务器端分页
         pageSize:3,//单页记录数
         pageList:[5,10,20,30],//分页步进值
-//        showRefresh:true,//刷新按钮
+//      showRefresh:true,//刷新按钮
         showColumns:true,
         clickToSelect: true,//是否启用点击选中行
         toolbarAlign:'right',//工具栏对齐方式
@@ -171,7 +172,8 @@
     }
     //查询按钮事件
     $('#search_btn').click(function(){
-        $('#dataShow').bootstrapTable('refresh', {url: 'pushInfoSearch'});
+        $('#dataShow').bootstrapTable('refresh', {url: 'pushInfoSearch?offset=1'});//此处会用上次的offset而不是1，所以强制传参数
+
     })
     //tableHeight函数
     function tableHeight(){
@@ -184,18 +186,20 @@
         $("#removeBtn").click(function(event) {
             $("#deleteModal").modal("hide");
             $.ajax({
-                url: "deletePushInfoByPiId/?piId=" + piId,
+                url: "deletePushInfoByPiId?piId=" + piId,
                 method: "GET",
-                dataType: "json"
-            })
-                    .done(function(data) {
-                        if (data === 'success') {
-                           alert("删除成功！")
-                        }
-                    })
-                    .fail(function() {
+               // dataType: "json",
+                success:function(data,status) {
+                    if (data=='success') {
+                        alert("删除成功！")
+                    }else{
                         alert("删除失败！")
-                    });
+                    }
+                    //刷新列
+                    $('#dataShow').bootstrapTable('refresh', {url: 'pushInfoSearch'});
+                }
+
+            })
                 });
     }
 </script>

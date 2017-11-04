@@ -54,5 +54,7 @@
     <if test="userName!=null and userName!=''">and user.user_name = #{userName}</if>
     <if test="keyWord!=null and keyWord!=''">and  pi_title like #{keyWord}</if>
   </select>
-
+<delete id="deletePushInfoByPiId" parameterType="java.lang.Integer" >
+  DELETE FROM push_info WHERE pi_id = #{piId}
+</delete>
 </mapper>

@@ -23,4 +23,9 @@ public class PushInfoService {
         PageInfo<BasePushInfo> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    public String deletePushInfoByPiId(int piId) {
+        pushInfoMapper.deletePushInfoByPiId(piId);
+        return "success";
+    }
 }
