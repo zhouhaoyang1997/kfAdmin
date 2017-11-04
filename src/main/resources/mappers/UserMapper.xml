@@ -4,4 +4,10 @@
     <select id="getUserByName" parameterType="java.lang.String" resultType="com.kf.admin.pojo.User">
         SELECT * from user WHERE user_name=#{username}
     </select>
+    <update id="addBlackList" parameterType="java.lang.String" >
+        UPDATE user SET status = 0 WHERE user_id = #{userId}
+    </update>
+    <!--<update id="updateUser" parameterType="com.kf.admin.pojo.Use">-->
+        <!--UPDATE user set-->
+    <!--</update>-->
 </mapper>

@@ -12,4 +12,8 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
 
     User getUserByName(@Param("username") String username);
+
+    String addBlackList(@Param("userId") String userId);
+
+    String updateUser(User user);
 }

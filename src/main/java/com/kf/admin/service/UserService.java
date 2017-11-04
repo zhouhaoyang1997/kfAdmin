@@ -18,4 +18,11 @@ public class UserService {
         return userMapper.getUserByName(username);
     }
 
+    public String addBlackList(String userId) {
+        return userMapper.addBlackList(userId);
+    }
+
+    public String updateUser(User user) {
+        return userMapper.updateUser(user);
+    }
 }
