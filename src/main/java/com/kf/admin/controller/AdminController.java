@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author zhy
@@ -36,5 +37,19 @@ public class AdminController {
             modelAndView = new ModelAndView("index");
         }
         return modelAndView;
+    }
+    @GetMapping("/getAdminList")
+    public List<Admin> getAdminList(){
+        return adminService.getAdminList();
+    }
+    @PostMapping("/insertAdmin")
+    public String insertAdmin(Admin admin){
+        adminService.insertAdmin(admin);
+        return "success";
+    }
+    @PostMapping("/deleteAdminById")
+    public String deleteAdminById(Integer userId){
+        adminService.deleteAdminById(userId);
+        return "success";
     }
 }

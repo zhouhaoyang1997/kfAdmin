@@ -5,6 +5,8 @@ import com.kf.admin.pojo.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author zhy
  * @create 2017-11-03 00:13
@@ -13,9 +15,10 @@ import org.springframework.stereotype.Service;
 public class AdminService {
     @Autowired
     AdminMapper adminMapper;
+
     public void insertAdmin(Admin admin){
         adminMapper.insertAdmin(admin);
-    };
+    }
 
     public Admin getAdminByUserId(int userId) {
         return adminMapper.getAdminByUserId(userId);
@@ -23,5 +26,13 @@ public class AdminService {
 
     public Admin judgeAdmin(Admin admin) {
         return adminMapper.judgeAdmin(admin);
+    }
+
+    public List<Admin> getAdminList() {
+        return adminMapper.getAdminList();
+    }
+
+    public void deleteAdminById(Integer userId) {
+        adminMapper.deleteAdminById(userId);
     }
 }

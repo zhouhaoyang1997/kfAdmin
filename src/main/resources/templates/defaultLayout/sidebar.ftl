@@ -7,7 +7,6 @@
                 </li>
                 <li><a href="/pushInfoManage" id="pushInfoManage"><i class="lnr lnr-code"></i> <span>发布信息管理</span></a>
                 </li>
-                <li><a href="/ADManage" class="" id="ADManage"><i class="lnr lnr-cog"></i> <span>广告管理</span></a></li>
                 <li><a href="/databaseBackup" id="databaseBackup" class=""><i class="lnr lnr-alarm"></i>
                     <span>数据库备份</span></a></li>
                 <li>
@@ -17,6 +16,15 @@
                         <ul class="nav">
                             <li><a href="editUserInfo" class="">会员信息管理</a></li>
                             <li><a href="blackList" class="">黑名单管理</a></li>
+                        </ul>
+                    </div>
+                </li>  <li>
+                    <a href="#ADManage" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i>
+                        <span>广告管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="ADManage" class="collapse ">
+                        <ul class="nav">
+                            <li><a href="ADManage" class="">首页</a></li>
+                            <li><a href="ADManage" class="">用户信息页面</a></li>
                         </ul>
                     </div>
                 </li>
