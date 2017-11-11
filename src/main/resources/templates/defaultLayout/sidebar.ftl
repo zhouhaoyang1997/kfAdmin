@@ -22,9 +22,9 @@
                     <a href="#ADManage" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i>
                         <span>广告管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                     <div id="ADManage" class="collapse ">
-                        <ul class="nav">
-                            <li><a href="ADManage" class="">首页</a></li>
-                            <li><a href="ADManage" class="">用户信息页面</a></li>
+                        <ul class="nav" id="ads">
+                            <#--<li><a href="ADManage" class="">首页</a></li>-->
+                            <#--<li><a href="ADManage" class="">用户信息页面</a></li>-->
                         </ul>
                     </div>
                 </li>
@@ -51,3 +51,10 @@
     </div>
 </div>
 <!-- END LEFT SIDEBAR -->
+<script>
+    $.get("getAdvertPageList",function (data,status) {
+        $.each(data,function (index,value) {
+            $("#ads").append("<li><a href=\'ADManage?page="+value+"\'>"+value+"</a></li>");
+        })
+    })
+</script>

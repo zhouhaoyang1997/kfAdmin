@@ -13,12 +13,9 @@
         <label for="inputClass" class="col-sm-2 control-label">请选择要上传的图片位置</label>
         <div class="col-sm-9">
             <select class="form-control">
-                <option>房产</option>
-                <option>二手货</option>
-                <option>招聘</option>
-                <>生活</>DVB
-                <option>宠物</option>
-                <option>名企</option>
+                <#list adverts as advert>
+                    <option>${advert.advertPosition}</option>
+                </#list>
             </select>
         </div>
     </div>

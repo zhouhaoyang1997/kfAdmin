@@ -79,11 +79,14 @@
                     "                <td>"+toDate(value.createTime)+"</td>\n" +
                     "                <td>"+toDate(value.lastedTime)+"</td>\n" +
                     "                <td>"+value.level+"</td>\n" +
-                    "                <td><span class=\"text-info\" onclick=\'showModal()\'><a href='javascript:void'>修改</a></span>|<span class=\"text-danger\" onclick=\'deleteAdmin("+value.userId+")\'><a href=\'javascript:void\'>删除</a></span></td>\n" +
+                    "                <td><span class=\"text-info\" onclick=\'showModal(\"\")\'><a href='javascript:void'>修改</a></span>|<span class=\"text-danger\" onclick=\'deleteAdmin("+value.userId+")\'><a href=\'javascript:void\'>删除</a></span></td>\n" +
                     "            </tr>")
         })
-    })
-   function form_submit() {
+    });
+    //全局变量
+    var methon;
+   function form_submit(methon) {
+        //通过methon判断是新建还是修改
        $.ajax({
            type: "POST",
            //gggggg

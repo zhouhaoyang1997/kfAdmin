@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kf.admin.mapper.AdvertMapper">
+
+    <select id="getAdvertList" resultType="com.kf.admin.pojo.Advert">
+        SELECT * FROM advert
+    </select>
+    <select id="getAdvertPageList" resultType="java.lang.String">
+        SELECT advert_page FROM advert GROUP  by advert_page
+    </select>
+    <select id="getAdvertsByPage" resultType="com.kf.admin.pojo.Advert" parameterType="java.lang.String">
+        SELECT * FROM advert WHERE advert_page = #{page}
+    </select>
+</mapper>
