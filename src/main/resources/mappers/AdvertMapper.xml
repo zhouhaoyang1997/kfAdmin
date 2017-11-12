@@ -11,4 +11,7 @@
     <select id="getAdvertsByPage" resultType="com.kf.admin.pojo.Advert" parameterType="java.lang.String">
         SELECT * FROM advert WHERE advert_page = #{page}
     </select>
+    <select id="getAdvertByPositionAndPage" parameterType="java.lang.String" resultType="com.kf.admin.pojo.Advert">
+        SELECT * FROM advert WHERE advert_page = #{page} AND advert_position = #{position}
+    </select>
 </mapper>

@@ -26,4 +26,8 @@ public class AdvertService {
     public List<Advert> getAdvertsByPage(String page) {
         return advertMapper.getAdvertsByPage(page);
     }
+
+    public Advert getAdvertByPositionAndPage(String page, String position) {
+        return advertMapper.getAdvertByPositionAndPage(page, position);
+    }
 }

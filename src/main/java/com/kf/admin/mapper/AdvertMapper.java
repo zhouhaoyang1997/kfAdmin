@@ -17,4 +17,6 @@ public interface AdvertMapper {
     List<String> getAdvertPageList();
 
     List<Advert> getAdvertsByPage(@Param("page") String page);
+
+    Advert getAdvertByPositionAndPage(@Param("page") String page, @Param("position") String position);
 }

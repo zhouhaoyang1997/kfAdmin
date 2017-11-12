@@ -31,3 +31,6 @@ mybatis:
 logging:
     level:
        com.kf.admin.mapper: debug
+# ImgPath
+path:
+ basePath: /Users/zhy/Downloads
