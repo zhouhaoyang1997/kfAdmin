@@ -7,8 +7,8 @@
                 </li>
                 <li><a href="/pushInfoManage" id="pushInfoManage"><i class="lnr lnr-code"></i> <span>发布信息管理</span></a>
                 </li>
-                <li><a href="/databaseBackup" id="databaseBackup" class=""><i class="lnr lnr-alarm"></i>
-                    <span>数据库备份</span></a></li>
+                <#--<li><a href="/databaseBackup" id="databaseBackup" class=""><i class="lnr lnr-alarm"></i>-->
+                    <#--<span>数据库备份</span></a></li>-->
                 <li>
                     <a href="#users" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i>
                         <span>会员管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -41,9 +41,9 @@
             <#--</ul>-->
             <#--</div>-->
             <#--</li>-->
-                <li><a href="/addNewSecondClass" class="" id="addNewSecondClass"><i class="lnr lnr-dice"></i> <span>信息分类管理</span></a>
-                </li>
-                <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>竞价管理</span></a></li>
+                <#--<li><a href="/addNewSecondClass" class="" id="addNewSecondClass"><i class="lnr lnr-dice"></i> <span>信息分类管理</span></a>-->
+                <#--</li>-->
+                <li><a href="/tipManage" class=""><i class="lnr lnr-text-format"></i> <span>举报管理</span></a></li>
                 <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>名企认证</span></a></li>
                 <!--<li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>-->
             </ul>

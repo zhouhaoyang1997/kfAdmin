@@ -1,7 +1,7 @@
 <#import "defaultLayout/defaultLayout.ftl" as defaultLayout>
 <@defaultLayout.layout>
 <script>
-    menuSelected("blacklist");
+    menuSelected("report");
 </script>
 <script src="../js/bootstrap-table.js"></script>
 <link href="../css/bootstrap-table.css" rel="stylesheet" />
@@ -9,7 +9,7 @@
 <div class="panel">
     <div class="panel-body">
         <div class="alert-success text-center" style="height:50px">
-            <h3 style="line-height: 50px">黑名单</h3>
+            <h3 style="line-height: 50px">举报清单</h3>
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
     $('#dataShow').bootstrapTable({
         method: 'get',
         contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-        url:"getBlackList",//要请求数据的文件路径
+        url:"getTipLIst",//要请求数据的文件路径
         // height:tableHeight(),//高度调整
         toolbar: '#toolbar',//指定工具栏
         sortable: false,                     //是否启用排序
@@ -52,28 +52,46 @@
             {
                 checkbox: true
             }, {
+                field: 'tipId',
+                title: '编号'
+            }, {
+                field: 'piId',
+                title: '信息ID'
+            },  {
                 field: 'userId',
                 title: '用户ID'
             }, {
-                field: 'userName',
-                title: '用户名'
-            },  {
-                field: 'lastedTime',
-                title: '最后登录时间',
+                field: 'tipContent',
+                title: '举报信息'
+            },{
+                field: 'tipStatus',
+                title: '状态',
+                formatter:function (value,row,index) {
+                    switch (value){
+                        case 0:
+                            return '未处理';
+                        case 1:
+                            return '已处理';
+                    }
+                }
+            },{
+                field: 'tipCreateTime',
+                title: '举报时间',
                 formatter:function (value,row,index) {
                     var unixTimestamp = new Date( value ) ;
                     return  unixTimestamp.toLocaleString();
 
                 }
-            }, {
-                field: 'status',
-                title: '状态',
+            },{
+                field:'tipStatus',
+                title:'操作',
                 formatter:function (value,row,index) {
-                    switch (value){
-                        case 0:
-                            return '已拉黑';
-                        case 1:
-                            return '正常';
+                    if(value==0){
+                        var s = '<a href="javascript:void(0)" onclick="TipOeration(\'ignore\','+row.piId+','+row.tipId+')">忽略</a>';
+                        var d = '<a href="javascript:void(0)" onclick="TipOeration(\'delete\','+row.piId+','+row.tipId+')">删除</a>';
+                        return s+' '+d;
+                    }else {
+                        return '已完成操作';
                     }
                 }
             }
@@ -91,7 +109,7 @@
             //每页多少条数据
             limit: params.limit,
             //请求第几页
-            offset:params.offset
+            offset:params.offset,
         }
     }
     //tableHeight函数
@@ -99,7 +117,16 @@
         //可以根据自己页面情况进行调整
         return $(window).height();
     }
-
+    //tip相关操作
+    function TipOeration(methon,piId,tipId){
+        //更新状态
+        $.get("updateTip?tipId="+tipId);
+        //对不同情况做处理
+        if(methon=="delete"){
+            $.get("deletePushInfoByPiId?piId="+piId);
+        }
+        location.reload();
+    }
 
 </script>
 

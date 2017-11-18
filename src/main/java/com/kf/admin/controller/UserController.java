@@ -1,11 +1,14 @@
 package com.kf.admin.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.kf.admin.pojo.User;
 import com.kf.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author zhy
@@ -22,7 +25,12 @@ public class UserController {
     }
     @GetMapping("/addBlackList")
     public String addBlackList(String userId){
-        return userService.addBlackList(userId);
+        userService.addBlackList(userId);
+        return "success";
+    }
+    @GetMapping("/getBlackList")
+    public PageInfo<User> getBlackList(Integer limit, Integer offset){
+        return userService.getBlackList(limit,offset);
     }
 //    @PostMapping("/updateUser")
 //    public String updateUser(User user){

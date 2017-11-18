@@ -21,17 +21,10 @@
                 <th>创建时间</th>
                 <th>上次登录时间</th>
                 <th>级别</th>
-                <th>&nbsp;&nbsp; 操作</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody id="tbody">
-            <#--<tr>-->
-                <#--<td>zhy</td>-->
-                <#--<td>周浩洋</td>-->
-                <#--<td>root</td>-->
-                <#--<td>2017年9月29日23:40:33</td>-->
-                <#--<td><span class="text-info">修改</span>|<span class="text-danger">禁用</span></td>-->
-            <#--</tr>-->
             </tbody>
         </table>
     </div>
@@ -79,17 +72,15 @@
                     "                <td>"+toDate(value.createTime)+"</td>\n" +
                     "                <td>"+toDate(value.lastedTime)+"</td>\n" +
                     "                <td>"+value.level+"</td>\n" +
-                    "                <td><span class=\"text-info\" onclick=\'showModal(\"\")\'><a href='javascript:void'>修改</a></span>|<span class=\"text-danger\" onclick=\'deleteAdmin("+value.userId+")\'><a href=\'javascript:void\'>删除</a></span></td>\n" +
+                    "                <td><span class=\"text-danger\" onclick=\'deleteAdmin("+value.userId+")\'><a href=\'javascript:void\'>删除</a></span></td>\n" +
                     "            </tr>")
         })
     });
     //全局变量
     var methon;
-   function form_submit(methon) {
-        //通过methon判断是新建还是修改
+   function form_submit() {
        $.ajax({
            type: "POST",
-           //gggggg
            url: "insertAdmin",
            data : $("#form").serialize(),
            success: function(msg) {

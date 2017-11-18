@@ -2,6 +2,7 @@ package com.kf.admin.service;
 
 import com.kf.admin.mapper.AdminMapper;
 import com.kf.admin.pojo.Admin;
+import com.kf.admin.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class AdminService {
     }
 
     public Admin judgeAdmin(Admin admin) {
+        System.out.println(admin);
         return adminMapper.judgeAdmin(admin);
     }
 

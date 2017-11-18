@@ -1,5 +1,7 @@
 package com.kf.admin.pojo;
 
+import com.kf.admin.util.Md5Util;
+
 import java.sql.Timestamp;
 
 /**
@@ -40,9 +42,9 @@ public class Admin {
     public String getUserPassword() {
         return userPassword;
     }
-
+    //二重加密
     public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword+salt;
+        this.userPassword = Md5Util.MD5(Md5Util.MD5(userPassword)+salt);
     }
 
     public Timestamp getCreateTime() {

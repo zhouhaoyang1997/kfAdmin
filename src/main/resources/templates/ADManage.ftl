@@ -10,6 +10,7 @@
 <form class="form-horizontal required-validate" action="/adUpload" enctype="multipart/form-data" method="post">
     <div class="form-group">
         <label for="inputClass" class="col-sm-2 control-label">请选择要更换的图片位置</label>
+        <input type="hidden" name="page" value="${page!'index'}">
         <div class="col-sm-9">
             <select id="position" class="form-control">
                 <option selected></option>
@@ -36,6 +37,7 @@
     </div>
 </form>
     <script type="text/javascript">
+
         var projectfileoptions = {
             showUpload: false,
             showRemove: false,

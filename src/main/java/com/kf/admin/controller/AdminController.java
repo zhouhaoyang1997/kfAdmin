@@ -2,6 +2,7 @@ package com.kf.admin.controller;
 
 import com.kf.admin.pojo.Admin;
 import com.kf.admin.service.AdminService;
+import com.kf.admin.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

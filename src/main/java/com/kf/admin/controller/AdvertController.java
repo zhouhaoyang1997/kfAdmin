@@ -76,7 +76,7 @@ public class AdvertController {
         return advertService.getAdvertByPositionAndPage(page,position);
     }
     @PostMapping("/adUpload")
-    public String adUpload(@RequestParam("image") MultipartFile pic, String imgUrl, HttpServletRequest request) throws IOException {
+    public ModelAndView adUpload(@RequestParam("image") MultipartFile pic, String imgUrl, String page,HttpServletRequest request) throws IOException {
         if(null != pic &&!pic.isEmpty()){
             String realPath = BasePath.getBasePath()+imgUrl;
             File file = new File(realPath);
@@ -84,9 +84,9 @@ public class AdvertController {
                 file.delete();
                 pic.transferTo(file);
             }
-            return "success";
         }
-        return "false";
+        //跳转到adManager(）函数
+        return adManager(page);
     }
     @GetMapping("/img/{classPath}/{filename:.+}")
     @ResponseBody
