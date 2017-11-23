@@ -37,4 +37,8 @@ public class UserService {
         PageInfo<User> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    public void updateUserAttr(Integer userId,Integer attr) {
+        userMapper.updateUserAttr(userId,attr);
+    }
 }

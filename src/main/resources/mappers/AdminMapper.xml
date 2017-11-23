@@ -12,7 +12,7 @@
         SELECT * from admin WHERE user_name=#{userName} and user_password=#{userPassword}
     </select>
     <select id="getAdminList" resultType="com.kf.admin.pojo.Admin">
-        SELECT * FROM admin
+        SELECT * FROM admin WHERE level = 1
     </select>
     <delete id="deleteAdminById" parameterType="java.lang.Integer">
         DELETE FROM admin WHERE user_id=#{userId}

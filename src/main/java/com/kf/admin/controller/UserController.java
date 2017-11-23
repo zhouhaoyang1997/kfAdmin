@@ -32,9 +32,8 @@ public class UserController {
     public PageInfo<User> getBlackList(Integer limit, Integer offset){
         return userService.getBlackList(limit,offset);
     }
-//    @PostMapping("/updateUser")
-//    public String updateUser(User user){
-//        return userService.updateUser(user);
-//    }
-
+    @GetMapping("/updateUserAttr")
+    public void updateUserAttr(Integer userId,Integer attr){
+        userService.updateUserAttr(userId,attr);
+    }
 }

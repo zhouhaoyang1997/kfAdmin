@@ -5,6 +5,7 @@ import com.kf.admin.pojo.Company;
 import com.kf.admin.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +22,24 @@ public class CompanyController {
     public ModelAndView companyManage(){
         return new ModelAndView("companyManage");
     }
+
+    @GetMapping("/companyInfo/{companyId}")
+    public ModelAndView companyInfo(@PathVariable Integer companyId){
+        ModelAndView modelAndView = new ModelAndView("companyInfo");
+        Company company = getCompanyByCompanyId(companyId);
+        modelAndView.addObject("cpInfo",company);
+        return modelAndView;
+    }
     @GetMapping("/getCompanyList")
     public PageInfo<Company> getCompanyList(Integer limit, Integer offset){
         return companyService.getCompanyList(limit,offset);
+    }
+    @GetMapping("/getCompanyByCompanyId")
+    public Company getCompanyByCompanyId(Integer companyId){
+        return companyService.getCompanyByCompanyId(companyId);
+    }
+    @GetMapping("deleteCompanyByCompanyId")
+    public void deleteCompanyByCompanyId(Integer companyId){
+        companyService.deleteCompanyByCompanyId(companyId);
     }
 }

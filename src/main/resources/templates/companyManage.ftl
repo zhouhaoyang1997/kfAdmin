@@ -26,7 +26,7 @@
     $('#dataShow').bootstrapTable({
         method: 'get',
         contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-        url:"getBlackList",//要请求数据的文件路径
+        url:"getCompanyList",//要请求数据的文件路径
         // height:tableHeight(),//高度调整
         toolbar: '#toolbar',//指定工具栏
         sortable: false,                     //是否启用排序
@@ -67,7 +67,7 @@
                 field: 'status',
                 title: '操作',
                 formatter:function (value,row,index) {
-                    var s = '<a href="/user/Info?piId='+row.piId+'">详情</a>';
+                    var s = '<a href="companyInfo/'+row.companyId+'">详情</a>';
                     return s;}
 
             }

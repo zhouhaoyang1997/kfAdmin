@@ -20,4 +20,6 @@ public interface UserMapper {
     String updateUser(User user);
 
     List<User> getBlackList();
+
+    void updateUserAttr(@Param("userId")Integer userId,@Param("attr") Integer attr);
 }

@@ -10,7 +10,7 @@
     <update id="addBlackList" parameterType="java.lang.String" >
         UPDATE user SET status = 0 WHERE user_id = #{userId}
     </update>
-    <!--<update id="updateUser" parameterType="com.kf.admin.pojo.Use">-->
-        <!--UPDATE user set-->
-    <!--</update>-->
+    <update id="updateUserAttr" parameterType="java.lang.Integer">
+        UPDATE user set user_attc = #{attr} WHERE user_id = #{userId}
+    </update>
 </mapper>

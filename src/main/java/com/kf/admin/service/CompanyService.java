@@ -7,6 +7,7 @@ import com.kf.admin.pojo.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -25,4 +26,19 @@ public class CompanyService {
         return pageInfo;
     }
 
+    public Company getCompanyByCompanyId(Integer companyId) {
+        return companyMapper.getCompanyByCompanyId(companyId);
+    }
+
+    public String getCompanyImgByCpId(Integer CompanyId){
+        return companyMapper.getCompanyImgByCpId(CompanyId);
+    }
+    public void deleteCompanyByCompanyId(Integer companyId) {
+        String imgbath = getCompanyImgByCpId(companyId);
+        File img = new File(imgbath);
+        if(img.exists()){
+            System.out.println("file exists !");
+        }
+        companyMapper.deleteCompanyByCompanyId(companyId);
+    }
 }
