@@ -16,6 +16,24 @@ public class Advert {
     Integer width;
     Integer height;
     Date expireTime;
+    String advertPosTitle;
+    String advertTitle;
+
+    public String getAdvertPosTitle() {
+        return advertPosTitle;
+    }
+
+    public void setAdvertPosTitle(String advertPosTitle) {
+        this.advertPosTitle = advertPosTitle;
+    }
+
+    public String getAdvertTitle() {
+        return advertTitle;
+    }
+
+    public void setAdvertTitle(String advertTitle) {
+        this.advertTitle = advertTitle;
+    }
 
     public Integer getAdvertId() {
         return advertId;

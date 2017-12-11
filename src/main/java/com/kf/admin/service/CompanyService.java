@@ -19,9 +19,9 @@ public class CompanyService {
     @Autowired
     CompanyMapper companyMapper;
 
-    public PageInfo<Company> getCompanyList(Integer limit, Integer offset) {
+    public PageInfo<Company> getCompanyListByStatus(Integer limit, Integer offset,Integer status) {
         PageHelper.startPage(offset/limit+1, limit);
-        List<Company> list = companyMapper.getCompanyList();
+        List<Company> list = companyMapper.getCompanyListByStatus(status);
         PageInfo<Company> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }

@@ -26,7 +26,7 @@ public class AdminService {
     }
 
     public Admin judgeAdmin(Admin admin) {
-        System.out.println(admin);
+//        System.out.println(admin);
         return adminMapper.judgeAdmin(admin);
     }
 

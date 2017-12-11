@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface CompanyMapper {
 
-    public List<Company> getCompanyList();
+    List<Company> getCompanyListByStatus(@Param("status") Integer status);
 
     Company getCompanyByCompanyId(@Param("companyId") Integer companyId);
 

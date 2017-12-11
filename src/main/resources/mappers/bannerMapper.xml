@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kf.admin.mapper.BannerMapper">
+
+
+    <update id="updateBanner"  parameterType="com.kf.admin.pojo.Banner">
+        UPDATE banner set banner_title =#{bannerTitle} ,banner_content = #{bannerContent} where advert_id = #{advertId}
+    </update>
+
+</mapper>

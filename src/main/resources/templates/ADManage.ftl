@@ -14,21 +14,45 @@
         <div class="col-sm-9">
             <select id="position" class="form-control">
                 <option selected></option>
-                <#list adverts as advert>
-                    <option value="${advert.advertPosition}">${advert.advertPosition}</option>
-                </#list>
+                    <#if adverts??>
+                        <#list adverts as advert>
+                            <option value="${advert.advertPosition}">${advert.advertPosTitle}</option>
+                        </#list>
+                    </#if>
             </select>
         </div>
     </div>
     <div class="hidden" id="adImage">
-        <input class="hidden" id="imgUrl" name="imgUrl" type="text" value="">
+        <input class="hidden" id="advertId" name="advertId" type="text" >
+        <input class="hidden" id="imgUrl" name="imgUrl" type="text">
+
         <div class="form-group">
-            <label for="" class="col-md-2 control-label">要更换的图片</label>
+            <label for="" class="col-md-2 control-label">示例图片</label>
+            <img id="demoImg" style="max-width: 80%">
+        </div>
+        <div class="form-group">
+            <label  class="col-md-2 control-label">要上传的图片</label>
             <div class="col-md-9 tl th">
-                <input type="file" name="image" id="adUpload" multiple value=""/>
+                <input  type="file" name="image" id="adUpload" multiple value=""/>
                 <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过2.0M</p>
             </div>
         </div>
+        <#if adverts??>
+            <#if page == "轮播图">
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="bannerTitle" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">内容</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="bannerContent" value="">
+                    </div>
+                </div>
+            </#if>
+        </#if>
         <div class="form-group text-center ">
             <div class="col-md-10 col-md-offset-1">
                 <button type="submit" class="btn btn-primary btn-lg">提交改变</button>
@@ -56,21 +80,17 @@
         $('#position').change(function () {
             $.get("getAdvertByPositionAndPage?page=${page}&position="+$(this).val(),function(data,status){
                 $('#adUpload').fileinput("destroy");
-                var imageurl = data.advertUrl;
-                //初始化隐藏参数imgurl的值
-                $("#imgUrl").attr('value',imageurl);
+                var imageurl = data.demoUrl;
+                console.log(imageurl);
                 //显示上传界面
                 $('#adImage').attr('class','show');
-
-                if (imageurl) {
-                    var op = $.extend({
-                        initialPreview: [ // 预览图片的设置
-                            "<img src='" + imageurl + "' class='file-preview-image' style='max-width: 100%;max-height: 100%'> ",]
-                    }, projectfileoptions);
-                    $('#adUpload').fileinput(op);
-                }
+                $('#demoImg').attr('src',imageurl);
+                $('#imgUrl').attr('value',imageurl);
+                $('#advertId').attr('value',data.advertId);
+                $('#adUpload').fileinput(projectfileoptions);
             });
         });
 
     </script>
+
 </@defaultLayout.layout>

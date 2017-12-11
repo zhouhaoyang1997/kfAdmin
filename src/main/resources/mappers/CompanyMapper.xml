@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kf.admin.mapper.CompanyMapper">
 
-    <select id="getCompanyList" resultType="com.kf.admin.pojo.Company">
-        SELECT * FROM company
+    <select id="getCompanyListByStatus" resultType="com.kf.admin.pojo.Company">
+        SELECT company_id,cp_contactPerson,cp_name,cp_user from `user`,company WHERE user.user_id = company.cp_user AND user.user_attc=#{status}
     </select>
     <select id="getCompanyByCompanyId" resultType="com.kf.admin.pojo.Company" parameterType="java.lang.Integer">
         SELECT * FROM company WHERE company_id = #{companyId}

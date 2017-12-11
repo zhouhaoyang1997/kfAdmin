@@ -1,8 +1,10 @@
 package com.kf.admin.controller;
 
 import com.kf.admin.pojo.Advert;
+import com.kf.admin.pojo.Banner;
 import com.kf.admin.pojo.BasePath;
 import com.kf.admin.service.AdvertService;
+import com.kf.admin.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,8 @@ public class AdvertController {
     AdvertService advertService;
     @Autowired
     private ResourceLoader resourceLoader;
-
+    @Autowired
+    private BannerService bannerService;
     @GetMapping("/ADManage")
     public ModelAndView adManager(String page){
         ModelAndView modelAndView = new ModelAndView("AdManage");
@@ -76,7 +79,7 @@ public class AdvertController {
         return advertService.getAdvertByPositionAndPage(page,position);
     }
     @PostMapping("/adUpload")
-    public ModelAndView adUpload(@RequestParam("image") MultipartFile pic, String imgUrl, String page,HttpServletRequest request) throws IOException {
+    public ModelAndView adUpload(@RequestParam("image") MultipartFile pic, String imgUrl, String page,@RequestParam(required = false)String bannerTitle,@RequestParam(required = false)int advertId,@RequestParam(required = false)String bannerContent) throws IOException {
         if(null != pic &&!pic.isEmpty()){
             String realPath = BasePath.getBasePath()+imgUrl;
             File file = new File(realPath);
@@ -85,6 +88,9 @@ public class AdvertController {
                 pic.transferTo(file);
             }
         }
+        //封装banner
+        Banner banner = new Banner(advertId,bannerTitle,bannerContent);
+        bannerService.alterBanner(banner);
         //跳转到adManager(）函数
         return adManager(page);
     }

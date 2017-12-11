@@ -29,7 +29,11 @@
                     </div>
                 </li>
                 <li><a href="/adminsManage" id="adminsManage" class=""><i class="lnr lnr-star"></i>
-                    <span>管理员设置</span></a></li>
+                    <span>管理员设置</span></a>
+                </li>
+                <li><a href="/adminsManage" id="adminsManage" class=""><i class="lnr lnr-star"></i>
+                    <span>管理员设置</span></a>
+                </li>
 
             <#--<li>-->
             <#--<a href="#admins" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i>-->

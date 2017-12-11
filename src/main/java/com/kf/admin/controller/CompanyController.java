@@ -30,15 +30,15 @@ public class CompanyController {
         modelAndView.addObject("cpInfo",company);
         return modelAndView;
     }
-    @GetMapping("/getCompanyList")
-    public PageInfo<Company> getCompanyList(Integer limit, Integer offset){
-        return companyService.getCompanyList(limit,offset);
+    @GetMapping("/getCompanyListByStatus")
+    public PageInfo<Company> getCompanyListByStatus(Integer limit, Integer offset,Integer status){
+        return companyService.getCompanyListByStatus(limit,offset,status);
     }
     @GetMapping("/getCompanyByCompanyId")
     public Company getCompanyByCompanyId(Integer companyId){
         return companyService.getCompanyByCompanyId(companyId);
     }
-    @GetMapping("deleteCompanyByCompanyId")
+    @GetMapping("/deleteCompanyByCompanyId")
     public void deleteCompanyByCompanyId(Integer companyId){
         companyService.deleteCompanyByCompanyId(companyId);
     }

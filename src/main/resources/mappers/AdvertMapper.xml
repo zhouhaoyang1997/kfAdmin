@@ -6,12 +6,12 @@
         SELECT * FROM advert
     </select>
     <select id="getAdvertPageList" resultType="java.lang.String">
-        SELECT advert_page FROM advert GROUP  by advert_page
+        SELECT advert_title FROM advert GROUP  by advert_title
     </select>
     <select id="getAdvertsByPage" resultType="com.kf.admin.pojo.Advert" parameterType="java.lang.String">
-        SELECT * FROM advert WHERE advert_page = #{page}
+        SELECT * FROM advert WHERE advert_title = #{page}
     </select>
     <select id="getAdvertByPositionAndPage" parameterType="java.lang.String" resultType="com.kf.admin.pojo.Advert">
-        SELECT * FROM advert WHERE advert_page = #{page} AND advert_position = #{position}
+        SELECT * FROM advert WHERE advert_title = #{page} AND advert_position = #{position}
     </select>
 </mapper>
