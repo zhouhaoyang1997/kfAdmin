@@ -31,6 +31,13 @@
             <img id="demoImg" style="max-width: 80%">
         </div>
         <div class="form-group">
+            <label for="" class="col-md-2 control-label">尺寸</label>
+            <div class="col-md-9">
+            <label id="advertWidth" class="control-label"></label>x
+            <label id="advertHeight" class="control-label"></label>(宽高)
+            </div>
+        </div>
+        <div class="form-group">
             <label  class="col-md-2 control-label">要上传的图片</label>
             <div class="col-md-9 tl th">
                 <input  type="file" name="image" id="adUpload" multiple value=""/>
@@ -81,9 +88,11 @@
             $.get("getAdvertByPositionAndPage?page=${page}&position="+$(this).val(),function(data,status){
                 $('#adUpload').fileinput("destroy");
                 var imageurl = data.demoUrl;
-                console.log(imageurl);
+                console.log(data.width);
                 //显示上传界面
                 $('#adImage').attr('class','show');
+                $('#advertWidth').text(data.width);
+                $('#advertHeight').text(data.height);
                 $('#demoImg').attr('src',imageurl);
                 $('#imgUrl').attr('value',imageurl);
                 $('#advertId').attr('value',data.advertId);
