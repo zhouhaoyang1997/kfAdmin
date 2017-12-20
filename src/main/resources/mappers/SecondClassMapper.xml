@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kf.admin.mapper.ClassMapper">
+    <select id="getSecondClassList" resultType="com.kf.admin.pojo.SecondClass" parameterType="java.lang.String">
+        SELECT * FROM secondclass WHERE sc_mc_id = #{mcId}
+    </select>
+    <delete id="deleteSecondClassByScId" parameterType="java.lang.String">
+        DELETE FROM secondclass WHERE sc_id = #{scId}
+    </delete>
+    <insert id="insertSecondClassByScId" parameterType="java.lang.String">
+        INSERT INTO secondclass(sc_name,sc_mc_id)VALUES(#{scName},#{mcId})
+    </insert>
+</mapper>

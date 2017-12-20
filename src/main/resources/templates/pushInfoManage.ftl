@@ -190,13 +190,11 @@
                 method: "GET",
                // dataType: "json",
                 success:function(data,status) {
-                    if (data=='success') {
-                        alert("删除成功！")
-                    }else{
-                        alert("删除失败！")
-                    }
                     //刷新列
                     $('#dataShow').bootstrapTable('refresh', {url: 'pushInfoSearch'});
+                },
+                error:function () {
+                    alert("删除失败！")
                 }
 
             })

@@ -1,7 +1,5 @@
 package com.kf.admin.pojo;
 
-import java.util.List;
-
 
 public class MainClass {
     private int mcId;
@@ -9,15 +7,7 @@ public class MainClass {
     private String mcName;
     private int mcClickNums;
 
-    private List<SecondClass> secondClasses;
 
-    public List<SecondClass> getSecondClasses() {
-        return secondClasses;
-    }
-
-    public void setSecondClasses(List<SecondClass> secondClasses) {
-        this.secondClasses = secondClasses;
-    }
 
     public int getMcId() {
         return mcId;

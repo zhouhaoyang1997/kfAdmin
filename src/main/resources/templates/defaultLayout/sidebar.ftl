@@ -31,8 +31,8 @@
                 <li><a href="/adminsManage" id="adminsManage" class=""><i class="lnr lnr-star"></i>
                     <span>管理员设置</span></a>
                 </li>
-                <li><a href="/adminsManage" id="adminsManage" class=""><i class="lnr lnr-star"></i>
-                    <span>管理员设置</span></a>
+                <li><a href="/classManage" id="classManage" class=""><i class="lnr lnr-star"></i>
+                    <span>菜单管理</span></a>
                 </li>
 
             <#--<li>-->
