@@ -7,8 +7,9 @@
                 </li>
                 <li><a href="/pushInfoManage" id="pushInfoManage"><i class="lnr lnr-code"></i> <span>发布信息管理</span></a>
                 </li>
-                <#--<li><a href="/databaseBackup" id="databaseBackup" class=""><i class="lnr lnr-alarm"></i>-->
-                    <#--<span>数据库备份</span></a></li>-->
+                <li><a href="/databaseBackup" id="databaseBackup" class=""><i class="lnr lnr-alarm"></i>
+                    <span>数据库备份</span></a>
+                </li>
                 <li>
                     <a href="#users" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i>
                         <span>会员管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>

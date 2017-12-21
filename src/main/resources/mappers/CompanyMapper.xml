@@ -9,7 +9,7 @@
         SELECT * FROM company WHERE company_id = #{companyId}
     </select>
     <delete id="deleteCompanyByCompanyId" parameterType="java.lang.Integer">
-        DELETE company WHERE company_id = #{companyId}
+        DELETE FROM company WHERE company_id = #{companyId}
     </delete>
     <select id="getCompanyImgByCpId" parameterType="java.lang.Integer" resultType="java.lang.String">
         SELECT cp_img FROM company WHERE company_id = #{companyId}

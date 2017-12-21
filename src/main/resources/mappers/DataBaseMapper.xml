@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kf.admin.mapper.DataBaseMapper">
+
+    <select id="getDBList" resultType="com.kf.admin.pojo.DataBaseBackup">
+        SELECT * from database_backup
+    </select>
+    <!--<select id="getCompanyByCompanyId" resultType="com.kf.admin.pojo.Company" parameterType="java.lang.Integer">-->
+        <!--SELECT * FROM company WHERE company_id = #{companyId}-->
+    <!--</select>-->
+    <delete id="delDbByFileName" parameterType="java.lang.String">
+        DELETE FROM database_backup WHERE file_name = #{fileName}
+    </delete>
+    <!--<select id="getCompanyImgByCpId" parameterType="java.lang.Integer" resultType="java.lang.String">-->
+        <!--SELECT cp_img FROM company WHERE company_id = #{companyId}-->
+    <!--</select>-->
+</mapper>

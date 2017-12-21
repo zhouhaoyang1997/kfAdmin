@@ -55,6 +55,11 @@
         </div>
     </div>
 </div>
+<div id="toolbar" class="btn-group">
+    <button id="btn_del" type="button" onclick="deletePushInfoList()" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>批量删除
+    </button>
+</div>
 <!-- END BASIC TABLE -->
 <script>
     //根据窗口调整表格高度
@@ -136,9 +141,9 @@
                     field:'option',
                             title:'操作',
                             formatter:function (value,row,index) {
-                                var s = '<a href="/user/alterInfo?piId='+row.piId+'">修改</a>';
+//                                var s = '<a href="/user/alterInfo?piId='+row.piId+'">修改</a>';
                                 var d = '<a id="remove" data-toggle="modal" href="javascript:void(0)" onclick="removeModal('+row.piId+')">删除</a>';
-                                return s+' '+d;}
+                                return d;}
                     }
                 ],
         locale:'zh-CN',//中文支持,
@@ -199,6 +204,22 @@
 
             })
                 });
+    }
+    //批量删除
+    function deletePushInfoList() {
+        //获取所有被选中的记录
+        var rows = $("#dataShow").bootstrapTable('getSelections');
+        if (rows.length== 0) {
+            alert("请先选择要删除的记录!");
+            return;
+        }
+        var ids = '';
+        for (var i = 0; i < rows.length; i++) {
+            piId = rows[i]['piId'];
+            $.get("deletePushInfoByPiId?piId="+piId)
+        }
+        $('#dataShow').bootstrapTable('refresh', {url: 'pushInfoSearch'});
+        console.log(ids)
     }
 </script>
 </@defaultLayout.layout>

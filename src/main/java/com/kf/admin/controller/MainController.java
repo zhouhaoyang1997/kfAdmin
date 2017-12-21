@@ -14,12 +14,12 @@ public class MainController extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("/index");
         registry.addViewController("/pushInfoManage").setViewName("/pushInfoManage");
-        registry.addViewController("/ADManage").setViewName("/AdManage");
+//        registry.addViewController("/ADManage").setViewName("/AdManage");
         registry.addViewController("/databaseBackup").setViewName("/databaseBackup");
         registry.addViewController("/editUserInfo").setViewName("/editUserInfo");
         registry.addViewController("/blackList").setViewName("/blackList");
         registry.addViewController("/adminsManage").setViewName("/adminsManage");
-        registry.addViewController("/addNewSecondClass").setViewName("/addNewSecondClass");
+//        registry.addViewController("/addNewSecondClass").setViewName("/addNewSecondClass");
     }
 
 

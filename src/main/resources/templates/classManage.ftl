@@ -36,7 +36,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                您确认删除该条信息吗?  删除后不可恢复!
+                您确认删除吗?  删除后不可恢复!
                 <input type="hidden" id="piIdHidden" value="">
             </div>
             <div class="modal-footer">
@@ -154,7 +154,7 @@
     function removeModal(scId) {
         $("#piIdHidden").val(scId);
         $("#deleteModal").modal("show");
-        $("#removeBtn").click(function(event) {
+        $("#removeBtn").unbind("click").click(function(event) {
             $("#deleteModal").modal("hide");
             $.ajax({
                 url: "deleteSecondClassByScId?scId=" + scId,
